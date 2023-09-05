@@ -7,11 +7,13 @@
     "dev": "nodemon index.js",
     "lint": "eslint",
     "start": "node index.js",
+    "railway": "railway",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@railway/cli": "^3.4.0",
     "nodemon": "3.0.1",
     "standard": "17.1.0"
   },
