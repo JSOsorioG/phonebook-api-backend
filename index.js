@@ -1,15 +1,25 @@
 const express = require('express')
 const app = express()
-const logger = require('./loggerMiddleware')
+//const logger = require('./loggerMiddleware')
 const cors = require('cors')
+
+
+require('dotenv').config()
+
+require('./mongo')
+
+const Person = require('./models/Person')
+
 
 
 app.use(cors())
 app.use(express.json())
 
-app.use(logger)
+//app.use(logger)
 
-let persons = [
+let persons = []
+
+/*let persons = [
       { 
         name: "Arto Hellas", 
         number: "040-123456",
@@ -30,7 +40,7 @@ let persons = [
         number: "39-23-6423122",
         id: 4
       }
-    ]
+    ]*/
 
 
 /*const app = http.createServer((request, response) => {
@@ -47,7 +57,9 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons', (request, response) => {
-    response.json(persons)
+    Person.find({}).then(persons => {
+      response.json(persons)
+    })
 })
 
 app.get('/api/persons/:id', (request, response) => {
