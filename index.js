@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-//const logger = require('./loggerMiddleware')
+const logger = require('./loggerMiddleware')
 const cors = require('cors')
 
 
@@ -15,7 +15,7 @@ const Person = require('./models/Person')
 app.use(cors())
 app.use(express.json())
 
-//app.use(logger)
+app.use(logger)
 
 let persons = []
 
