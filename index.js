@@ -146,8 +146,6 @@ app.put('/api/persons/:id', (request, response) => {
   })
 
   response.json(updatedPerson)
-}).catch(err => {
-  next(err)
 })
 
 app.use((error, request, response, next) => {
