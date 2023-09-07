@@ -108,7 +108,7 @@ app.put('/api/persons/:id', (request, response, next) => {
   const { id } = request.params
 
     const updatedPerson = {
-    ...persons.find((person) => person.id === id),
+    //...persons.find((person) => person.id === id),
     //name: person.name,
     number: person.number
   }
