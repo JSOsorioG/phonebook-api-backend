@@ -1,7 +1,7 @@
 // getting-started.js
 const mongoose = require('mongoose')
-//const connectionString = process.env.MONGODB_URI
-const connectionString = 'mongodb+srv://juansesochevi:123@cluster0.fnlykx0.mongodb.net/phonebook?retryWrites=true&w=majority'
+const connectionString = process.env.MONGODB_URI
+//const connectionString = 'mongodb+srv://juansesochevi:123@cluster0.fnlykx0.mongodb.net/phonebook?retryWrites=true&w=majority'
 
 main().catch(err => console.log(err));
 
