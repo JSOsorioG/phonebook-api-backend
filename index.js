@@ -128,24 +128,24 @@ else {
   
 })
 
-app.put('/api/persons/:id', (request, response) => {
+app.put('/api/persons/:id', (request, response, next) => {
   const person = request.body
-  const id = Number(request.params.id)
+  const { id } = request.params
 
-  const updatedPerson = {
+    const updatedPerson = {
     ...persons.find((person) => person.id === id),
     name: person.name,
     number: person.number
   }
 
-  console.log(updatedPerson);
+  Person.findByIdAndUpdate(id, updatedPerson)
+    .then(result => {
+      response.json(result)
+    })
+    .catch(err => {
+      next(err)
+    }) 
 
-  persons = persons.map((person) => {
-    if (person.id === id) return updatedPerson
-    else return person
-  })
-
-  response.json(updatedPerson)
 })
 
 app.use((error, request, response, next) => {
