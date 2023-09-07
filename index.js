@@ -2,13 +2,15 @@ const express = require('express')
 const app = express()
 const logger = require('./loggerMiddleware')
 const cors = require('cors')
-
+const notFound = require('./middleware/notFound.js')
+const handleErrors = require('./middleware/handleErrors.js')
 
 //require('dotenv').config()
 
 require('./mongo')
 
 const Person = require('./models/Person')
+
 
 
 
@@ -52,7 +54,7 @@ app.get('/api/persons/:id', (request, response) => {
 app.delete('/api/persons/:id', (request, response, next) => {
     const { id } = request.params
     //persons = persons.filter(person => person.id !== id)
-    Person.findByIdAndRemove(id).then(result => {
+    Person.findByIdAndDelete(id).then(() => {
       response.status(204).end()
     }).catch(err => {
       next(err)
@@ -69,7 +71,7 @@ if ((!person.name) || (!person.number) ) {
   })
   //console.log('Campo en blanco');
 }
-/*else if(Person.find(name)){
+/*else if(Person.find({name: name}).exec().then(response => console.log(response))){
   //console.log('Nombre repetido');
   return response.status(400).json({
     error: 'Name must be unique'
@@ -121,20 +123,9 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 })
 
-app.use((request, response, next) => {
-  response.status(400).end()
-})
+app.use(notFound)
 
-app.use((error, request, response, next) => {
-  console.error(error)
-  if (error.name === 'CastError') {
-    response.status(404).json({
-      error: "id used is malformed"
-    })
-  } else {
-    response.status(500).end()
-  }
-})
+app.use(handleErrors)
 
 
 
