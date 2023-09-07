@@ -69,7 +69,7 @@ if ((!person.name) || (!person.number) ) {
   })
   //console.log('Campo en blanco');
 }
-else if(persons.find(p => p.name === name) !== undefined){
+else if(Person.find(name)){
   //console.log('Nombre repetido');
   return response.status(400).json({
     error: 'Name must be unique'
@@ -123,7 +123,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 })
 
 app.use((request, response, next) => {
-  response.status(404).end()
+  response.status(400).end()
 })
 
 app.use((error, request, response, next) => {
