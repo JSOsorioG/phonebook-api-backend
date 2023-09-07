@@ -1,4 +1,5 @@
-GET http://localhost:3001/api/persons
+//GET http://localhost:3001/api/persons
+GET https://phonebook-api-backend-production-1267.up.railway.app/api/persons
 //Accept: application/json
 //content-type: application/json
 
