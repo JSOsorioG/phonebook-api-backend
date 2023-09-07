@@ -17,32 +17,6 @@ app.use(express.json())
 
 app.use(logger)
 
-let persons = []
-
-/*let persons = [
-      { 
-        name: "Arto Hellas", 
-        number: "040-123456",
-        id: 1
-      },
-      { 
-        name: "Ada Lovelace", 
-        number: "39-44-5323523",
-        id: 2
-      },
-      { 
-        name: "Dan Abramov", 
-        number: "12-43-234345",
-        id: 3
-      },
-      { 
-        name: "Mary Poppendieck", 
-        number: "39-23-6423122",
-        id: 4
-      }
-    ]*/
-
-
 /*const app = http.createServer((request, response) => {
     response.writeHead(200, { 'Content-Type': 'application/json' })
     response.end(JSON.stringify(persons))
@@ -134,11 +108,11 @@ app.put('/api/persons/:id', (request, response, next) => {
 
     const updatedPerson = {
     ...persons.find((person) => person.id === id),
-    name: person.name,
+    //name: person.name,
     number: person.number
   }
 
-  Person.findByIdAndUpdate(id, updatedPerson)
+  Person.findByIdAndUpdate(id, updatedPerson, {new: true})
     .then(result => {
       response.json(result)
     })
@@ -157,6 +131,10 @@ app.use((error, request, response, next) => {
   } else {
     response.status(500).end()
   }
+})
+
+app.use((request, response, next) => {
+  response.status(404).end()
 })
 
 const PORT = process.env.PORT || 3001
