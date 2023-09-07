@@ -99,18 +99,26 @@ else if(persons.find(p => p.name === name) !== undefined){
 }
 else {
   //console.log('Correcto');
-  const ids = persons.map(person => person.id)
-  const maxId = Math.max(...ids)
+  //const ids = persons.map(person => person.id)
+  //const maxId = Math.max(...ids)
 
-  const newPerson = {
+  const newPerson = new Person({
+    name: person.name,
+    number: person.number
+  })
+
+  /*const newPerson = {
     id: maxId +1,
     name: person.name,
     number: person.number
-  }
+  }*/
 
-  persons = [...persons, newPerson]
+  //persons = [...persons, newPerson]
+  newPerson.save().then(savedPerson => {
+    response.status(201).json(savedPerson)
+  })
 
-  response.status(201).json(newPerson)
+  
 }
   
 })

@@ -1,7 +1,8 @@
-POST http://localhost:3001/api/persons
+//POST http://localhost:3001/api/persons
+POST https://phonebook-api-backend-production-1267.up.railway.app/api/persons
 content-type: application/json
 
 {
-    "name": "Juanda",
+    "name": "Sebas",
     "number": "30000000"
 }
