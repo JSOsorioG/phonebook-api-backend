@@ -80,10 +80,9 @@ app.delete('/api/persons/:id', (request, response, next) => {
     //persons = persons.filter(person => person.id !== id)
     Person.findByIdAndRemove(id).then(result => {
       response.status(204).end()
-    }) 
-    
-}).catch(err => {
-  next(err)
+    }).catch(err => {
+      next(err)
+    })    
 })
 
 app.post('/api/persons', (request, response) => {
