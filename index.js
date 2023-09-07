@@ -75,10 +75,15 @@ app.get('/api/persons/:id', (request, response) => {
     })   
 })
 
-app.delete('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    persons = persons.filter(person => person.id !== id)
-    response.status(204).end()
+app.delete('/api/persons/:id', (request, response, next) => {
+    const { id } = request.params
+    //persons = persons.filter(person => person.id !== id)
+    Person.findByIdAndDelete(id).then(result => {
+      response.status(204).end()
+    }) 
+    
+}).catch(err => {
+  next(err)
 })
 
 app.post('/api/persons', (request, response) => {
@@ -142,12 +147,19 @@ app.put('/api/persons/:id', (request, response) => {
   })
 
   response.json(updatedPerson)
+}).catch(err => {
+  next(err)
 })
 
-app.use((request, response, next) => {
-  response.status(404).json({
-    error: "Not found"
-  })
+app.use((error, request, response, next) => {
+  console.error(error)
+  if (error.name === 'CastError') {
+    response.status(404).json({
+      error: "id used is malformed"
+    })
+  } else {
+    response.status(500).end()
+  }
 })
 
 const PORT = process.env.PORT || 3001
