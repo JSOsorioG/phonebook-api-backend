@@ -84,7 +84,7 @@ app.post('/api/persons', (request, response) => {
   const person = request.body
   const name = person.name
 
-if ((person.name === "") || (person.number === "") ) {
+if ((!person.name) || (!person.number) ) {
   return response.status(400).json({
     error: 'Name and number can´t be empty'
   })
