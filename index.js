@@ -69,13 +69,12 @@ if ((!person.name) || (!person.number) ) {
   })
   //console.log('Campo en blanco');
 }
-else if(Person.find(name)){
+/*else if(Person.find(name)){
   //console.log('Nombre repetido');
   return response.status(400).json({
     error: 'Name must be unique'
   })
-
-}
+}*/
 else {
   //console.log('Correcto');
   //const ids = persons.map(person => person.id)
