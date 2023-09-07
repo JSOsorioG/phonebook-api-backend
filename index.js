@@ -122,6 +122,10 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 })
 
+app.use((request, response, next) => {
+  response.status(404).end()
+})
+
 app.use((error, request, response, next) => {
   console.error(error)
   if (error.name === 'CastError') {
@@ -133,9 +137,7 @@ app.use((error, request, response, next) => {
   }
 })
 
-app.use((request, response, next) => {
-  response.status(404).end()
-})
+
 
 const PORT = process.env.PORT || 3001
 //const PORT = 6385
