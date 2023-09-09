@@ -1,8 +1,14 @@
-// getting-started.js
-const mongoose = require('mongoose')
-const connectionString = process.env.MONGODB_URI
-//const connectionString = 'mongodb+srv://juansesochevi:123@cluster0.fnlykx0.mongodb.net/phonebook?retryWrites=true&w=majority'
+//! Import required modules
 
+const mongoose = require('mongoose') //Import Mongoose
+
+//? Define DB's constants
+const connectionString = process.env.MONGODB_URI //Define connectionString using .env variable
+//const connectionString = 'mongodb+srv://juansesochevi:123@cluster0.fnlykx0.mongodb.net/phonebook?retryWrites=true&w=majority' //Define connectionString directly
+
+//! Connect to MongoDB
+
+//? Mongoose's code to connect to DB
 main().catch(err => console.log(err));
 
 async function main() {
@@ -17,22 +23,3 @@ async function main() {
 
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
-
-/*Person.find({}).then(result => {
-  console.log(result)
-  mongoose.connection.close()
-})
-
-const person = new Person({
-  name: 'Sebas',
-  number: '3137219437'
-})
-
-person.save()
-  .then(result => {
-    console.log(result)
-    mongoose.connection.close()
-  })
-  .catch(err => {
-    console.log(err)
-  })*/
